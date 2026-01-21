@@ -1,5 +1,9 @@
+if WOW_PROJECT_ID ~= WOW_PROJECT_MISTS_CLASSIC then
+  return
+end
+
 RemoveQuestie_Selections = {}
-local REMOVEQUESTIE_VERSION = "1.04"
+local REMOVEQUESTIE_VERSION = "1.07"
 
 -- Localización
 local _, ns = ...
@@ -138,12 +142,16 @@ local function HookQuestLogCheckboxes()
   end
 end
 
+-- Inicialización
 function RemoveQuestie_OnLoad()
   hooksecurefunc("QuestLog_Update", HookQuestLogCheckboxes)
   CreateRemoveQuestieButtons()
 
-  local version = GetAddOnMetadata("RemoveQuestie", "Version") or REMOVEQUESTIE_VERSION
-  print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.ADDON_LOADED .. " |cffffff00" .. version .. "|r.")
+  if not RemoveQuestie_Loaded then
+      RemoveQuestie_Loaded = true
+      local version = GetAddOnMetadata("RemoveQuestie", "Version") or REMOVEQUESTIE_VERSION
+      print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.ADDON_LOADED .. " |cffffff00" .. version .. "|r.")
+  end
 end
 
 -- Eventos

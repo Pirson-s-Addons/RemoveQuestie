@@ -1,4 +1,3 @@
--- Locales.lua
 local _, ns = ...
 ns.L = {}
 local L = ns.L
