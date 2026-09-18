@@ -1,4 +1,4 @@
-## Interface: 20505, 20506, 50500, 50501, 50502, 50503, 50504
+## Interface: 16001
 ## Version: 1.10
 ## Author: Pirson
 
@@ -23,5 +23,4 @@
 Locales.lua
 RemoveQuestie.xml
 
-Source_TBC/RemoveQuestie.lua
-Source_MoP/RemoveQuestie.lua
+Source_Forever/RemoveQuestie.lua
