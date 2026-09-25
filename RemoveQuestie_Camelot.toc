@@ -1,8 +1,55 @@
 ## Interface: 16001
-## Version: 1.10
+## Version: 1.11
 ## Author: Pirson
 
-## Title: |TInterface/Addons/RemoveQuestie/img/logo_rq:16:16|t |cffd597ffRemove Questie|r
+## IconTexture: Interface\AddOns\RemoveQuestie\img\logo_rq
+## Title: |cffd597ffRemove Questie|r
+
+# https://warcraft.wiki.gg/wiki/Addon_Categories
+## Category: Quests & Leveling
+## Category-deDE: Quests & Stufenaufstieg
+## Category-esES: Misiones y subida de nivel
+## Category-esMX: Misiones y subida de nivel
+## Category-frFR: Quêtes et progression
+## Category-itIT: Missioni e livellamento
+## Category-koKR: 퀘스트 및 레벨업
+## Category-ptBR: Missões e evolução
+## Category-ruRU: Задания и прокачка
+## Category-zhCN: 任务与升级
+## Category-zhTW: 任務與升級
+## Category-plPL: Zadania i rozwój postaci
+## Category-svSE: Uppdrag och levling
+## Category-noNO: Oppdrag og nivåøkning
+## Category-csCZ: Úkoly a levelování
+## Category-nlNL: Quests en levelen
+## Category-roRO: Misiuni și avansare
+## Category-huHU: Küldetések és szintlépés
+## Category-elGR: Αποστολές και ανέβασμα επιπέδου
+## Category-ukUA: Завдання й прокачування
+## Category-daDK: Quests og levelering
+## Category-fiFI: Tehtävät ja tasonnousu
+## Category-skSK: Úlohy a levelovanie
+## Category-bgBG: Задачи и качване на нива
+## Category-hrHR: Zadaci i napredovanje
+## Category-srRS: Zadaci i napredovanje
+## Category-slSI: Naloge in napredovanje
+## Category-ltLT: Užduotys ir lygių kėlimas
+## Category-lvLV: Uzdevumi un līmeņu celšana
+## Category-etEE: Ülesanded ja tasemetõus
+## Category-idID: Misi dan naik level
+## Category-msMY: Misi dan naik tahap
+## Category-faIR: مأموریت‌ها و ارتقای سطح
+## Category-heIL: משימות ועליית רמות
+## Category-bnBD: কোয়েস্ট ও লেভেলিং
+## Category-urPK: کوئسٹس اور لیولنگ
+## Category-taIN: பணிகள் மற்றும் நிலை உயர்வு
+## Category-teIN: క్వెస్ట్‌లు మరియు లెవలింగ్
+## Category-trTR: Görevler ve seviye atlama
+## Category-jaJP: クエストとレベル上げ
+## Category-arSA: المهام ورفع المستوى
+## Category-hiIN: क्वेस्ट और लेवलिंग
+## Category-thTH: เควสและการเลเวล
+## Category-viVN: Nhiệm vụ và lên cấp
 
 ## Notes: |cFF33CCFFAllows you to cancel all or select quests directly from the quest log panel (L).|r
 ## Notes-deDE: |cFF33CCFFErmöglicht es dir, alle oder ausgewählte Quests direkt aus dem Questlog (L) zu löschen.|r
@@ -12,15 +59,66 @@
 ## Notes-itIT: |cFF33CCFFConsente di annullare tutte o alcune missioni direttamente dal registro missioni (L).|r
 ## Notes-koKR: |cFF33CCFF퀘스트 로그 패널(L)에서 모든 퀘스트 또는 선택한 퀘스트를 취소할 수 있습니다.|r
 ## Notes-ptBR: |cFF33CCFFPermite cancelar todas ou selecionar missões diretamente no registro de missões (L).|r
-## Notes-ptPT: |cFF33CCFFPermite cancelar todas ou selecionar missões diretamente no registo de missões (L).|r
 ## Notes-ruRU: |cFF33CCFFПозволяет отменять все или выбранные задания прямо из журнала заданий (L).|r
 ## Notes-zhCN: |cFF33CCFF允许您直接从任务日志面板 (L) 中放弃所有或部分任务。|r
 ## Notes-zhTW: |cFF33CCFF允許您直接從任務日誌面板 (L) 中放棄所有或部分任務。|r
+## Notes-plPL: |cFF33CCFFPozwala porzucić wszystkie lub wybrane zadania bezpośrednio z dziennika zadań (L).|r
+## Notes-svSE: |cFF33CCFFLåter dig överge alla eller valda uppdrag direkt från uppdragsloggen (L).|r
+## Notes-noNO: |cFF33CCFFLar deg forlate alle eller valgte oppdrag direkte fra oppdragsloggen (L).|r
+## Notes-csCZ: |cFF33CCFFUmožňuje opustit všechny nebo vybrané úkoly přímo z deníku úkolů (L).|r
+## Notes-nlNL: |cFF33CCFFLaat je alle of geselecteerde quests direct vanuit het questlogboek (L) afbreken.|r
+## Notes-roRO: |cFF33CCFFÎți permite să abandonezi toate misiunile sau pe cele selectate direct din jurnalul de misiuni (L).|r
+## Notes-huHU: |cFF33CCFFLehetővé teszi az összes vagy a kijelölt küldetés feladását közvetlenül a küldetésnaplóból (L).|r
+## Notes-elGR: |cFF33CCFFΣου επιτρέπει να εγκαταλείψεις όλες ή επιλεγμένες αποστολές απευθείας από το ημερολόγιο αποστολών (L).|r
+## Notes-ukUA: |cFF33CCFFДає змогу покинути всі або вибрані завдання прямо з журналу завдань (L).|r
+## Notes-daDK: |cFF33CCFFLader dig opgive alle eller valgte quests direkte fra questloggen (L).|r
+## Notes-fiFI: |cFF33CCFFVoit hylätä kaikki tai valitut tehtävät suoraan tehtäväpäiväkirjasta (L).|r
+## Notes-skSK: |cFF33CCFFUmožňuje opustiť všetky alebo vybrané úlohy priamo z denníka úloh (L).|r
+## Notes-bgBG: |cFF33CCFFПозволява ти да изоставиш всички или избрани задачи директно от дневника на задачите (L).|r
+## Notes-hrHR: |cFF33CCFFOmogućuje napuštanje svih ili odabranih zadataka izravno iz dnevnika zadataka (L).|r
+## Notes-srRS: |cFF33CCFFOmogućava napuštanje svih ili izabranih zadataka direktno iz dnevnika zadataka (L).|r
+## Notes-slSI: |cFF33CCFFOmogoča opustitev vseh ali izbranih nalog neposredno iz dnevnika nalog (L).|r
+## Notes-ltLT: |cFF33CCFFLeidžia atsisakyti visų arba pasirinktų užduočių tiesiai iš užduočių žurnalo (L).|r
+## Notes-lvLV: |cFF33CCFFĻauj atteikties no visiem vai izvēlētajiem uzdevumiem tieši no uzdevumu žurnāla (L).|r
+## Notes-etEE: |cFF33CCFFVõimaldab loobuda kõigist või valitud ülesannetest otse ülesannete logist (L).|r
+## Notes-idID: |cFF33CCFFMemungkinkanmu membatalkan semua misi atau misi terpilih langsung dari log misi (L).|r
+## Notes-msMY: |cFF33CCFFMembolehkan anda meninggalkan semua misi atau misi terpilih terus dari log misi (L).|r
+## Notes-faIR: |cFF33CCFFبه شما امکان می‌دهد همه یا مأموریت‌های انتخاب‌شده را مستقیماً از دفترچه‌ی مأموریت (L) رها کنید.|r
+## Notes-heIL: |cFF33CCFFמאפשר לנטוש את כל המשימות או משימות נבחרות ישירות מיומן המשימות (L).|r
+## Notes-bnBD: |cFF33CCFFকোয়েস্ট লগ (L) থেকে সরাসরি সব বা নির্বাচিত কোয়েস্ট বাতিল করতে দেয়।|r
+## Notes-urPK: |cFF33CCFFکوئسٹ لاگ (L) سے براہ راست تمام یا منتخب کوئسٹس چھوڑنے دیتا ہے۔|r
+## Notes-taIN: |cFF33CCFFபணி பதிவேட்டிலிருந்து (L) நேரடியாக அனைத்து அல்லது தேர்ந்தெடுத்த பணிகளைக் கைவிட அனுமதிக்கிறது.|r
+## Notes-teIN: |cFF33CCFFక్వెస్ట్ లాగ్ (L) నుండి నేరుగా అన్ని లేదా ఎంచుకున్న క్వెస్ట్‌లను వదిలేయడానికి అనుమతిస్తుంది.|r
+## Notes-trTR: |cFF33CCFFTüm görevleri veya seçili görevleri doğrudan görev günlüğünden (L) bırakmanı sağlar.|r
+## Notes-jaJP: |cFF33CCFFクエストログ（L）から直接、すべてのクエストまたは選択したクエストを放棄できます。|r
+## Notes-arSA: |cFF33CCFFيتيح لك التخلي عن جميع المهام أو المهام المحددة مباشرة من سجل المهام (L).|r
+## Notes-hiIN: |cFF33CCFFक्वेस्ट लॉग (L) से सीधे सभी या चुनी हुई क्वेस्ट छोड़ने देता है।|r
+## Notes-thTH: |cFF33CCFFละทิ้งเควสทั้งหมดหรือที่เลือกได้โดยตรงจากสมุดบันทึกเควส (L)|r
+## Notes-viVN: |cFF33CCFFCho phép bỏ tất cả hoặc các nhiệm vụ đã chọn ngay từ nhật ký nhiệm vụ (L).|r
 
 ## X-Curse-Project-ID: 1308020
 ## X-Wago-ID: kGr0w76y
 
-Locales.lua
+Locales/enUS.lua
+Locales/esES.lua
+Locales/deDE.lua
+Locales/frFR.lua
+Locales/itIT.lua
+Locales/ptBR.lua
+Locales/ruRU.lua
+Locales/koKR.lua
+Locales/zhCN.lua
+Locales/zhTW.lua
+Locales/plPL.lua
+Locales/svSE.lua
+Locales/noNO.lua
+Locales/trTR.lua
+Locales/jaJP.lua
+Locales/arSA.lua
+Locales/hiIN.lua
+Locales/thTH.lua
+Locales/viVN.lua
+Locales/csCZ.lua
 RemoveQuestie.xml
 
-Source_Forever/RemoveQuestie.lua
+Core/Forever.lua

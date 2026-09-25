@@ -3,7 +3,7 @@ if WOW_PROJECT_ID ~= WOW_PROJECT_MISTS_CLASSIC then
 end
 
 RemoveQuestie_Selections = {}
-local REMOVEQUESTIE_VERSION = "1.07"
+local REMOVEQUESTIE_VERSION = "1.11"
 
 -- Localización
 local _, ns = ...
