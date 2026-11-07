@@ -69,6 +69,8 @@ end
 local function CreateButton(name, text, width, onClick)
   local btn = CreateFrame("Button", name, QuestMapFrame, "UIPanelButtonTemplate")
   btn:SetSize(width, 22)
+  -- El BorderFrame del mapa es HIGH y ocupa toda la ventana: por debajo tapa la fila superior
+  btn:SetFrameStrata("DIALOG")
   btn:SetText(text)
   btn:SetScript("OnClick", onClick)
   return btn

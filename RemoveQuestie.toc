@@ -1,5 +1,5 @@
 ## Interface: 20505, 20506, 50500, 50501, 50502, 50503, 50504
-## Version: 1.11
+## Version: 1.12
 ## Author: Pirson
 
 ## IconTexture: Interface\AddOns\RemoveQuestie\img\logo_rq
