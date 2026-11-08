@@ -95,26 +95,62 @@ local function CreateRemoveQuestieButtons()
   end)
   unselectAll:SetPoint("LEFT", selectAll, "RIGHT", 4, 0)
 
-  local abandonSelected = CreateButton("RemoveQuestie_AbandonSelectedButton", L.ABANDON_SELECTED, 160, function()
-    local any = false
+  local function GetSelectedQuests()
+    local selected = {}
     for _, quest in ipairs(GetAbandonableQuests()) do
       if RemoveQuestie_Selections[quest.questID] then
-        Abandon(quest)
-        any = true
+        selected[#selected + 1] = quest
       end
     end
-    print(PREFIX .. (any and L.SELECTED_ABANDONED or L.NO_SELECTED))
+    return selected
+  end
+  StaticPopupDialogs["REMOVEQUESTIE_CONFIRM_SELECTED"] = {
+    text = L.CONFIRM_ABANDON_SELECTED,
+    button1 = YES,
+    button2 = NO,
+    OnAccept = function()
+      local selected = GetSelectedQuests()
+      for _, quest in ipairs(selected) do
+        Abandon(quest)
+      end
+      print(PREFIX .. (#selected > 0 and L.SELECTED_ABANDONED or L.NO_SELECTED))
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    showAlert = true,
+  }
+  local abandonSelected = CreateButton("RemoveQuestie_AbandonSelectedButton", L.ABANDON_SELECTED, 160, function()
+    local count = #GetSelectedQuests()
+    if count == 0 then
+      print(PREFIX .. L.NO_SELECTED)
+    else
+      StaticPopup_Show("REMOVEQUESTIE_CONFIRM_SELECTED", count)
+    end
   end)
   abandonSelected:SetPoint("TOPLEFT", selectAll, "BOTTOMLEFT", 0, -2)
 
+  -- Confirmacion antes de abandonar todo: un clic por error no tiene vuelta atras
+  StaticPopupDialogs["REMOVEQUESTIE_CONFIRM_ALL"] = {
+    text = L.CONFIRM_ABANDON_ALL,
+    button1 = YES,
+    button2 = NO,
+    OnAccept = function()
+      local quests = GetAbandonableQuests()
+      for _, quest in ipairs(quests) do
+        Abandon(quest)
+      end
+      if #quests > 0 then
+        print(PREFIX .. L.ALL_ABANDONED)
+      end
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    showAlert = true,
+  }
   local abandonAll = CreateButton("RemoveQuestie_AbandonAllButton", L.ABANDON_ALL, 160, function()
-    local quests = GetAbandonableQuests()
-    for _, quest in ipairs(quests) do
-      Abandon(quest)
-    end
-    if #quests > 0 then
-      print(PREFIX .. L.ALL_ABANDONED)
-    end
+    StaticPopup_Show("REMOVEQUESTIE_CONFIRM_ALL")
   end)
   abandonAll:SetPoint("LEFT", abandonSelected, "RIGHT", 4, 0)
 end

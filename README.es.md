@@ -38,7 +38,7 @@
 
 - Una **casilla** junto a cada misión para marcarla.
 - Botones **Seleccionar todas** / **Deseleccionar todas**.
-- **Abandonar seleccionadas** abandona solo las misiones marcadas; **Abandonar todas** abandona todas las del registro.
+- **Abandonar seleccionadas** abandona solo las misiones marcadas; **Abandonar todas** abandona todas las del registro. Los dos piden confirmación antes.
 - Cada misión abandonada aparece en el chat.
 - Funciona en el registro de misiones clásico (TBC Anniversary, Mists) y en el del mapa del mundo (WoW Forever). Traducido a 20 idiomas.
 
@@ -48,7 +48,7 @@
 2. Extrae la carpeta `RemoveQuestie` en la carpeta AddOns de tu versión del juego:
    - TBC Anniversary: `World of Warcraft/_anniversary_/Interface/AddOns/`
    - Classic (Mists): `World of Warcraft/_classic_/Interface/AddOns/`
-   - WoW Forever: `World of Warcraft/_classic_beta_/Interface/AddOns/`
+   - WoW Forever: `World of Warcraft/_forever_/Interface/AddOns/`
 3. Reinicia el juego y activa el addon.
 
 ## Uso
@@ -58,7 +58,7 @@
 
 ## Notas
 
-Los botones abandonan las misiones **al momento, sin ventana de confirmación**, así que revisa bien lo que has marcado. La selección no se guarda entre sesiones. Pese al nombre, no necesita ni toca el addon Questie.
+Los dos botones de abandonar muestran antes una ventana de confirmación (Abandonar seleccionadas indica cuántas misiones va a quitar); no se abandona nada hasta pulsar **Sí**. La selección no se guarda entre sesiones. Pese al nombre, no necesita ni toca el addon Questie.
 
 ---
 

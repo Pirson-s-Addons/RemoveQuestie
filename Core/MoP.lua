@@ -3,7 +3,7 @@ if WOW_PROJECT_ID ~= WOW_PROJECT_MISTS_CLASSIC then
 end
 
 RemoveQuestie_Selections = {}
-local REMOVEQUESTIE_VERSION = "1.12"
+local REMOVEQUESTIE_VERSION = "1.13"
 
 -- Localización
 local _, ns = ...
@@ -17,25 +17,38 @@ local function CreateRemoveQuestieButtons()
   abandonAllBtn:SetSize(130, 22)
   abandonAllBtn:SetText(L.ABANDON_ALL)
   abandonAllBtn:SetPoint("BOTTOMLEFT", QuestLogFrame, "BOTTOMLEFT", 188, -25)
-  abandonAllBtn:SetScript("OnClick", function()
-    local numEntries = GetNumQuestLogEntries()
-    local abandonedAny = false
-    for i = numEntries, 1, -1 do
-      local title, _, _, isHeader, _, _, _, questID = GetQuestLogTitle(i)
-      if not isHeader and questID and questID ~= 0 then
-        SelectQuestLogEntry(i)
-        SetAbandonQuest()
-        AbandonQuest()
-        RemoveQuestie_Selections[questID] = nil
-        if title then
-          print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.ABANDON_TEXT .. "|cffffff00" .. title .. "|r")
+  -- Confirmacion antes de abandonar todo: un clic por error no tiene vuelta atras
+  StaticPopupDialogs["REMOVEQUESTIE_CONFIRM_ALL"] = {
+    text = L.CONFIRM_ABANDON_ALL,
+    button1 = YES,
+    button2 = NO,
+    OnAccept = function()
+      local numEntries = GetNumQuestLogEntries()
+      local abandonedAny = false
+      for i = numEntries, 1, -1 do
+        local title, _, _, isHeader, _, _, _, questID = GetQuestLogTitle(i)
+        if not isHeader and questID and questID ~= 0 then
+          SelectQuestLogEntry(i)
+          SetAbandonQuest()
+          AbandonQuest()
+          RemoveQuestie_Selections[questID] = nil
+          if title then
+            print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.ABANDON_TEXT .. "|cffffff00" .. title .. "|r")
+          end
+          abandonedAny = true
         end
-        abandonedAny = true
       end
-    end
-    if abandonedAny then
-      print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.ALL_ABANDONED)
-    end
+      if abandonedAny then
+        print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.ALL_ABANDONED)
+      end
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    showAlert = true,
+  }
+  abandonAllBtn:SetScript("OnClick", function()
+    StaticPopup_Show("REMOVEQUESTIE_CONFIRM_ALL")
   end)
 
   -- Botón: Abandonar seleccionadas
@@ -43,39 +56,63 @@ local function CreateRemoveQuestieButtons()
   RemoveQuestie_AbandonSelectedButton:SetSize(180, 22)
   RemoveQuestie_AbandonSelectedButton:SetText(L.ABANDON_SELECTED)
   RemoveQuestie_AbandonSelectedButton:SetPoint("BOTTOMLEFT", QuestLogFrame, "BOTTOMLEFT", 4.5, -25)
-  RemoveQuestie_AbandonSelectedButton:SetScript("OnClick", function()
-    local questIDToIndex = {}
-    local numEntries = GetNumQuestLogEntries()
+  StaticPopupDialogs["REMOVEQUESTIE_CONFIRM_SELECTED"] = {
+    text = L.CONFIRM_ABANDON_SELECTED,
+    button1 = YES,
+    button2 = NO,
+    OnAccept = function()
+      local questIDToIndex = {}
+      local numEntries = GetNumQuestLogEntries()
 
-    -- Mapear questID → índice
-    for i = 1, numEntries do
-      local _, _, _, isHeader, _, _, _, questID = GetQuestLogTitle(i)
-      if not isHeader and questID then
-        questIDToIndex[questID] = i
-      end
-    end
-
-    local hasSelected = false
-
-    for questID, _ in pairs(RemoveQuestie_Selections) do
-      local index = questIDToIndex[questID]
-      if index then
-        local title = GetQuestLogTitle(index)
-        SelectQuestLogEntry(index)
-        SetAbandonQuest()
-        AbandonQuest()
-        RemoveQuestie_Selections[questID] = nil
-        hasSelected = true
-        if title then
-          print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.ABANDON_TEXT .. "|cffffff00" .. title .. "|r")
+      -- Mapear questID → índice
+      for i = 1, numEntries do
+        local _, _, _, isHeader, _, _, _, questID = GetQuestLogTitle(i)
+        if not isHeader and questID then
+          questIDToIndex[questID] = i
         end
       end
-    end
 
-    if hasSelected then
-      print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.SELECTED_ABANDONED)
-    else
+      local hasSelected = false
+
+      for questID, _ in pairs(RemoveQuestie_Selections) do
+        local index = questIDToIndex[questID]
+        if index then
+          local title = GetQuestLogTitle(index)
+          SelectQuestLogEntry(index)
+          SetAbandonQuest()
+          AbandonQuest()
+          RemoveQuestie_Selections[questID] = nil
+          hasSelected = true
+          if title then
+            print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.ABANDON_TEXT .. "|cffffff00" .. title .. "|r")
+          end
+        end
+      end
+
+      if hasSelected then
+        print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.SELECTED_ABANDONED)
+      else
+        print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.NO_SELECTED)
+      end
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    showAlert = true,
+  }
+  RemoveQuestie_AbandonSelectedButton:SetScript("OnClick", function()
+    -- Solo cuenta las marcadas que siguen en el registro
+    local count = 0
+    for i = 1, GetNumQuestLogEntries() do
+      local _, _, _, isHeader, _, _, _, questID = GetQuestLogTitle(i)
+      if not isHeader and questID and RemoveQuestie_Selections[questID] then
+        count = count + 1
+      end
+    end
+    if count == 0 then
       print("|cffffff00[|r|cffd597ffRemoveQuestie|r|cffffff00]|r " .. L.NO_SELECTED)
+    else
+      StaticPopup_Show("REMOVEQUESTIE_CONFIRM_SELECTED", count)
     end
   end)
 
