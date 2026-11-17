@@ -97,6 +97,10 @@
 ## Notes-viVN: |cFF33CCFFCho phép bỏ tất cả hoặc các nhiệm vụ đã chọn ngay từ nhật ký nhiệm vụ (L).|r
 
 ## X-Curse-Project-ID: 1308020
+## X-License: MIT
+## X-Copyright: Copyright (c) 2025-2026 Pirson
+## X-Website: https://github.com/Pirson-s-Addons/RemoveQuestie
+## X-Localizations: enUS, esES, esMX, deDE, frFR, itIT, ptBR, ruRU, koKR, zhCN, zhTW, plPL, svSE, noNO, trTR, jaJP, arSA, hiIN, thTH, viVN, csCZ
 ## X-Wago-ID: kGr0w76y
 
 Locales/enUS.lua
