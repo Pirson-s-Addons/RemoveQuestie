@@ -49,8 +49,13 @@ local function UpdateCheckboxes()
     if not button.RemoveQuestieCheck then
       local cb = CreateFrame("CheckButton", nil, button, "UICheckButtonTemplate")
       cb:SetSize(18, 18)
-      -- A la izquierda del checkbox de seguimiento y del icono de tipo de mision
-      cb:SetPoint("RIGHT", button.Checkbox, "LEFT", -24, 0)
+      -- Pegada a la casilla de seguimiento del juego, dentro de su cadena de anclajes:
+      -- icono de tipo, icono de trama, "(Mazmorra)" y titulo se corren a la izquierda
+      cb:SetPoint("RIGHT", button.Checkbox, "LEFT", -2, 0)
+      if button.TagTexture then
+        button.TagTexture:ClearAllPoints()
+        button.TagTexture:SetPoint("RIGHT", cb, "LEFT", -4, 0)
+      end
       cb:SetScript("OnClick", function(self)
         local questID = self:GetParent().questID
         if questID and questID ~= 0 then
@@ -191,7 +196,7 @@ local function CreateRemoveQuestieButtons()
           root:CreateButton(("%s (%d)"):format(name, #zones[name]), function()
             for _, questID in ipairs(zones[name]) do RemoveQuestie_Selections[questID] = true end
             UpdateCheckboxes()
-            print(PREFIX .. L.ZONE_SELECTED:format(name, #zones[name]) .. " |cffffff00→ " .. L.ABANDON_SELECTED .. "|r")
+            print(PREFIX .. L.ZONE_SELECTED:format(name, #zones[name]) .. " |cffffff00- " .. L.ABANDON_SELECTED .. "|r")
           end)
         end
       end)
