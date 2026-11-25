@@ -66,8 +66,24 @@ local function UpdateCheckboxes()
   end
 end
 
+-- Modo compacto (/rq compact): letra pequena y botones del ancho del registro, para
+-- mapas reducidos como el de Leatrix Maps
+RemoveQuestieDB = RemoveQuestieDB or {}
+local buttons = {}
+
+local function ApplySize()
+  local compact = RemoveQuestieDB.compact
+  local width = compact and math.max(60, (QuestMapFrame:GetWidth() - 12) / 2) or 160
+  for _, btn in ipairs(buttons) do
+    btn:SetSize(width, compact and 18 or 22)
+    btn:SetNormalFontObject(compact and "GameFontNormalSmall" or "GameFontNormal")
+    btn:SetHighlightFontObject(compact and "GameFontHighlightSmall" or "GameFontHighlight")
+  end
+end
+
 local function CreateButton(name, text, width, onClick)
   local btn = CreateFrame("Button", name, QuestMapFrame, "UIPanelButtonTemplate")
+  buttons[#buttons + 1] = btn
   btn:SetSize(width, 22)
   -- El BorderFrame del mapa es HIGH y ocupa toda la ventana: por debajo tapa la fila superior
   btn:SetFrameStrata("DIALOG")
@@ -153,6 +169,48 @@ local function CreateRemoveQuestieButtons()
     StaticPopup_Show("REMOVEQUESTIE_CONFIRM_ALL")
   end)
   abandonAll:SetPoint("LEFT", abandonSelected, "RIGHT", 4, 0)
+
+  -- Seleccionar las misiones de una zona (las cabeceras del registro); luego se
+  -- abandonan con "Abandonar seleccionadas", que pide confirmacion
+  if MenuUtil and MenuUtil.CreateContextMenu then
+    local byZone = CreateButton("RemoveQuestie_SelectZoneButton", L.SELECT_ZONE, 160, function(self)
+      local zones, order, zone = {}, {}, nil
+      for i = 1, C_QuestLog.GetNumQuestLogEntries() do
+        local info = C_QuestLog.GetInfo(i)
+        if info and info.isHeader then
+          zone = info.title
+        elseif info and zone and not info.isHidden and info.questID and info.questID ~= 0
+          and C_QuestLog.CanAbandonQuest(info.questID) then
+          if not zones[zone] then zones[zone] = {}; order[#order + 1] = zone end
+          table.insert(zones[zone], info.questID)
+        end
+      end
+      if #order == 0 then print(PREFIX .. L.NO_ZONES) return end
+      MenuUtil.CreateContextMenu(self, function(_, root)
+        for _, name in ipairs(order) do
+          root:CreateButton(("%s (%d)"):format(name, #zones[name]), function()
+            for _, questID in ipairs(zones[name]) do RemoveQuestie_Selections[questID] = true end
+            UpdateCheckboxes()
+            print(PREFIX .. L.ZONE_SELECTED:format(name, #zones[name]) .. " |cffffff00→ " .. L.ABANDON_SELECTED .. "|r")
+          end)
+        end
+      end)
+    end)
+    byZone:SetPoint("TOPLEFT", abandonSelected, "BOTTOMLEFT", 0, -2)
+  end
+  ApplySize()
+end
+
+SLASH_REMOVEQUESTIE1 = "/rq"
+SLASH_REMOVEQUESTIE2 = "/removequestie"
+SlashCmdList.REMOVEQUESTIE = function(msg)
+  if msg:lower():match("^%s*compact") then
+    RemoveQuestieDB.compact = not RemoveQuestieDB.compact or nil
+    if #buttons > 0 then ApplySize() end
+    print(PREFIX .. (RemoveQuestieDB.compact and L.COMPACT_ON or L.COMPACT_OFF))
+  else
+    print(PREFIX .. L.HELP)
+  end
 end
 
 local frame = CreateFrame("Frame")
@@ -162,6 +220,7 @@ frame:SetScript("OnEvent", function()
 
   hooksecurefunc("QuestLogQuests_Update", UpdateCheckboxes)
   CreateRemoveQuestieButtons()
+  QuestMapFrame:HookScript("OnSizeChanged", function() if RemoveQuestieDB.compact then ApplySize() end end)
 
   local version = C_AddOns.GetAddOnMetadata("RemoveQuestie", "Version")
   print(PREFIX .. L.ADDON_LOADED .. " |cffffff00" .. (version or "?") .. "|r.")
