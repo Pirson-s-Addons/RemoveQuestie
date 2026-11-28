@@ -1,5 +1,5 @@
 ## Interface: 16001
-## Version: 1.16
+## Version: 1.17
 ## Author: Pirson
 
 ## IconTexture: Interface\AddOns\RemoveQuestie\img\logo_rq
@@ -102,7 +102,6 @@
 ## X-Website: https://github.com/Pirson-s-Addons/RemoveQuestie
 ## X-Localizations: enUS, esES, esMX, deDE, frFR, itIT, ptBR, ruRU, koKR, zhCN, zhTW, plPL, svSE, noNO, trTR, jaJP, arSA, hiIN, thTH, viVN, csCZ
 ## X-Wago-ID: kGr0w76y
-## SavedVariables: RemoveQuestieDB
 
 Locales/enUS.lua
 Locales/esES.lua

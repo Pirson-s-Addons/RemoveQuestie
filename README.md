@@ -25,13 +25,14 @@
 - **Select All** / **Unselect All** buttons.
 - **Abandon Selected** abandons only the ticked quests; **Abandon All** abandons every quest in the log. Both ask for confirmation first.
 - **Select Zone** (WoW Forever): pick a zone from the list to tick all its quests, then press **Abandon Selected**.
+- **Tracking** (WoW Forever): track or untrack every quest at once, or zone by zone, with the game's own quest tracking.
 - Each abandoned quest is listed in the chat.
 - Works in the classic quest log (TBC Anniversary, Mists) and in the world map quest log (WoW Forever). Translated into 20 languages.
 
 ## Usage
 
 - Open the quest log (`L`), tick the quests you want to drop and press **Abandon Selected**, or press **Abandon All**.
-- `/rq compact` (WoW Forever) toggles smaller buttons and text, for small maps like Leatrix Maps.
+- In WoW Forever the buttons sit in a thin bar under the quest log, as wide as it (fits small maps like Leatrix Maps): **Select** opens a menu with Select All, Unselect All, Select Zone, Tracking and Abandon All; **Abandon (N)** abandons the ticked quests.
 
 ## Installation
 

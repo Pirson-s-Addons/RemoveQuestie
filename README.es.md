@@ -25,13 +25,14 @@
 - Botones **Seleccionar todas** / **Deseleccionar todas**.
 - **Abandonar seleccionadas** abandona solo las misiones marcadas; **Abandonar todas** abandona todas las del registro. Los dos piden confirmación antes.
 - **Seleccionar zona** (WoW Forever): elige una zona de la lista para marcar todas sus misiones y luego pulsa **Abandonar seleccionadas**.
+- **Seguimiento** (WoW Forever): sigue o deja de seguir todas las misiones de golpe, o zona a zona, con el seguimiento de misiones del propio juego.
 - Cada misión abandonada aparece en el chat.
 - Funciona en el registro de misiones clásico (TBC Anniversary, Mists) y en el del mapa del mundo (WoW Forever). Traducido a 20 idiomas.
 
 ## Uso
 
 - Abre el registro de misiones (`L`), marca las que quieras quitar y pulsa **Abandonar seleccionadas**, o pulsa **Abandonar todas**.
-- `/rq compact` (WoW Forever) activa o quita los botones y el texto pequeños, para mapas reducidos como Leatrix Maps.
+- En WoW Forever los botones van en una barra fina bajo el registro, de su mismo ancho (cabe en mapas reducidos como Leatrix Maps): **Seleccionar** abre un menú con Seleccionar todas, Deseleccionar todas, Seleccionar zona, Seguimiento y Abandonar todas; **Abandonar (N)** abandona las misiones marcadas.
 
 ## Instalación
 
